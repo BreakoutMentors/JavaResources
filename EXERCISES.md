@@ -1,7 +1,7 @@
 # Java Exercises
 
-Short practice problems — no images, no level files, nothing to download. Each one is Java
-source you paste straight into a fresh JuiceMind sandbox.
+Short practice problems — no images, no level files, nothing to download. Every exercise is a
+single `Main.java` you paste straight into a fresh JuiceMind sandbox.
 
 For the bigger graphical projects (Snake, Pacman, Tower Defense, and friends), see the
 [main README](README.md) instead.
@@ -20,21 +20,20 @@ and sign in (a free account is fine).
 
 **3. Click inside `Main.java`, select everything (Ctrl-A / Cmd-A), and delete it.**
 
-**4. Copy the `Main.java` block for the exercise below and paste it in.**
+**4. Copy the code block for the exercise below and paste it in.**
 
 **5. Press the blue ▶ Run button.**
 
-Output appears in the console on the right. Exercises that ask you questions read your typed
-answers from that same console — click into it and type.
+That's the whole loop — one file, one paste, press play. Output appears in the console on the
+right. Exercises that ask you questions read your typed answers from that same console, so
+click into it and type.
 
-### Exercises with more than one file
+> A few of the later exercises have more than one class — `Student` and `Classroom`, or
+> `Shape` and `Rectangle` and `Square`. They all live in the one file, below `Main`. Java is
+> fine with that, and it keeps these to a single copy and paste. Add your own new classes at
+> the bottom of the same file.
 
-Classroom, Shapes, Linked List and Binary Tree are split across several files. For each extra
-file, click the **new-file icon** next to the word **Files** in the explorer, name it exactly
-as shown (for example `Student.java`), and paste that block in. The name has to match the
-class name inside it.
-
-> The class in `Main.java` is always called `Main`, because JuiceMind always runs `Main.java`.
+> The first class is always called `Main`, because JuiceMind always runs `Main.java`.
 > Don't rename it.
 
 ---
@@ -414,9 +413,40 @@ class Main {
 
 ### Silly Sentence Generator
 
-> **Not in this repo yet.** This one didn't come through in the Replit export — the
-> `SillySentenceGenerator` repl wasn't in the archive. If you still have it somewhere,
-> drop the source in here and it slots straight into the list above.
+Pick a random word from an array, then build up to a whole sentence: *The &lt;adjective&gt; &lt;noun&gt; &lt;verb&gt; the &lt;adjective&gt; &lt;noun&gt;.* One line inside `randomWord` is marked `YOU FILL THIS IN`.
+
+```java
+import java.util.Random;
+class Main {
+  Random r = new Random();
+
+  public Main() {
+    String[] verbArray = {"runs", "jumps", "climbs"};
+
+    //a simple sentence structure:
+    //The <adjective> <noun> <verb> the <adjective> <noun>.
+    //call the function and remember the result
+    String verb = randomWord(verbArray);
+    System.out.println(verb);
+  }
+
+  public static void main(String[] args) {
+    new Main(); //kicks off the program
+  }
+
+  //this function is given a list of words and selects one at random
+  private String randomWord(String[] wordArray){
+    //get the length of the words list
+    int numberOfWords = wordArray.length;
+    //pick a random number up to the end of the list
+    int randomIndex = r.nextInt(numberOfWords);
+    //select the word at the number spot
+    String selectedWord = "YOU FILL THIS IN";
+
+    return selectedWord;
+  }
+}
+```
 
 ### ArrayLists
 
@@ -594,23 +624,19 @@ Challenge: ask the user for an input, compare it to the list of random digits, k
 
 ### Classroom
 
-Three files. `Student` and `Classroom` are skeletons — finish the constructors, the getters, and `toString()`, then make objects in `Main` and print them.
-
-**`Main.java`**
+`Student` and `Classroom` are skeletons — finish the constructors, the getters, and `toString()`, then make objects in `Main` and print them. All three classes are in the one file.
 
 ```java
+import java.util.ArrayList;
+
 class Main {
   public static void main(String[] args) {
     System.out.println("Hello world!");
     // Test out your classroom/student by making new variables.
   }
 }
-```
 
-**`Student.java`**
-
-```java
-public class Student {
+class Student {
   private int grade, age;
   private String name;
   //Add more instance variables as you see fit.
@@ -637,14 +663,8 @@ public class Student {
 
   // Add other methods as you see fit.
 }
-```
 
-**`Classroom.java`**
-
-```java
-import java.util.ArrayList;
-
-public class Classroom {
+class Classroom {
   private String className;
   private ArrayList<Student> students;
   // Add more instance variables! (e.g. teacher name, time, etc.)
@@ -687,23 +707,17 @@ public class Classroom {
 
 ### Shapes
 
-Four files. `Shape` is abstract, `Rectangle` extends it, and `Square` extends `Rectangle` (note how `super` reuses the parent constructor). Fill in `Rectangle`, then add `Triangle` and `Circle` yourself.
-
-**`Main.java`**
+`Shape` is abstract, `Rectangle` extends it, and `Square` extends `Rectangle` (note how `super` reuses the parent constructor). Fill in `Rectangle`, then add `Triangle` and `Circle` at the bottom of the same file.
 
 ```java
 class Main {
   public static void main(String[] args) {
     Rectangle r = new Rectangle(10, 30);
-    // Make new files with Triangle, Circle classes!
+    // Add Triangle and Circle classes at the bottom of this file!
   }
 }
-```
 
-**`Shape.java`**
-
-```java
-public abstract class Shape {
+abstract class Shape {
   abstract double getArea();
   abstract double getPerimeter();
 
@@ -711,12 +725,8 @@ public abstract class Shape {
     return true;
   }
 }
-```
 
-**`Rectangle.java`**
-
-```java
-public class Rectangle extends Shape {
+class Rectangle extends Shape {
   // Fill in instance variables
   
   public Rectangle (int width, int height) {
@@ -735,12 +745,8 @@ public class Rectangle extends Shape {
     return 0; // Replace this with a correct diagonal function.
   }
 }
-```
 
-**`Square.java`**
-
-```java
-public class Square extends Rectangle {
+class Square extends Rectangle {
   public Square(int side) {
     super(side, side); //super uses the constructor of the parent class.
   }
@@ -751,12 +757,12 @@ public class Square extends Rectangle {
 
 ### Graphics Objects
 
-The starting point for the Space Invaders project, and a tour of how a game
-draws itself: an abstract `ScreenObject`, with `Oval` and `Image` both extending it,
-and a `Main` that runs a 40-frames-per-second game loop.
+The starting point for the Space Invaders project, and a tour of how a game draws
+itself: an abstract `ScreenObject`, with `Oval` and `Image` both extending it, and a
+`Main` that runs a 40-frames-per-second game loop.
 
-This one needs its spaceship sprite, so it can't be pasted — download
-**[GraphicsObjects.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/GraphicsObjects.zip)**
+This is the one exception to the copy-and-paste rule — it needs its spaceship sprite,
+so download **[GraphicsObjects.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/GraphicsObjects.zip)**
 and upload it with the zip steps in the [main README](README.md#how-to-use-a-project).
 
 ---
@@ -875,13 +881,11 @@ class Main {
 
 ### Linked List
 
-A generic `LinkedList<T>` with a private `Node` inner class. Every method is a stub — `getLength`, `addFirst`, `addLast`, `removeFirst`, `removeLast`, `get`, `toString`.
+A generic `LinkedList<T>` with a private `Node` inner class, in the same file as `Main`. Every method is a stub — `getLength`, `addFirst`, `addLast`, `removeFirst`, `removeLast`, `get`, `toString`.
 
 > **Note:** the original declared `addFirst()` twice (the second one's comment says
 > *adds to the last node*), and the `Node` constructor took an `int` instead of a `T`.
 > Both fixed, so the file compiles as-is.
-
-**`Main.java`**
 
 ```java
 class Main {
@@ -889,12 +893,8 @@ class Main {
     // Test out your Linked List here!
   }
 }
-```
 
-**`LinkedList.java`**
-
-```java
-public class LinkedList<T> { // T is the type of item, just like in ArrayList<String>
+class LinkedList<T> { // T is the type of item, just like in ArrayList<String>
   
   private class Node {
     private T item;
@@ -957,20 +957,14 @@ A generic `BinaryTree<T>`, same idea one step harder. `add` has to compare items
 > **Note:** `getLargest()` was missing its `return`, and `contains()` returned `void`
 > with no way to answer the question. Both fixed, so the file compiles as-is.
 
-**`Main.java`**
-
 ```java
 class Main {
   public static void main(String[] args) {
     // Test out your Binary Tree here!
   }
 }
-```
 
-**`BinaryTree.java`**
-
-```java
-public class BinaryTree<T> { // T is the type of item, just like in ArrayList<String>
+class BinaryTree<T> { // T is the type of item, just like in ArrayList<String>
   
   private class Node {
     private T item;
@@ -1029,3 +1023,10 @@ public class BinaryTree<T> { // T is the type of item, just like in ArrayList<St
 ```
 
 ---
+
+## Adding an exercise to this file
+
+Keep each one to a single `Main.java` with no external files, so a student can paste and run
+in under a minute. Extra classes are fine — put them below `Main` in the same block. If an
+exercise genuinely needs images, level files, or `acm.jar`, it belongs in the
+[main README](README.md) as a zip instead.
