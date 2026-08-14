@@ -46,6 +46,10 @@ file explorer, or use the **Auto-resize / Fixed size** toggle in the bottom-righ
 | **Game of Life** — finished | [GameOfLife-Finished.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/GameOfLife-Finished.zip) | [Open sandbox](https://play.juicemind.com/sandbox/EnHOJBoUW8OFEO5TNghP) | The completed simulation: draw a pattern, press Start, and watch it evolve. Gliders travel. Neighbour counting wraps around the edges. Plain Java Swing. |
 | **Snake** — starter | [Snake-Starter.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/Snake-Starter.zip) | [Open sandbox](https://play.juicemind.com/sandbox/6ztBiLBqtMPMZ8nyaFxN) | Classic Snake with the movement left out. The board, apple and score all work; `moveSnakeCheckApple`, `checkBounds`, `checkOverlap` and `snakeToGrid` are marked `YOUR CODE HERE`. Plain Java Swing. |
 | **Snake** — finished | [Snake-Finished.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/Snake-Finished.zip) | [Open sandbox](https://play.juicemind.com/sandbox/xj1salIK3yBkS3CO1Lwk) | The completed game: steer with the arrow keys, eat apples to grow and score, and it's Game Over if you hit a wall or your own tail. Plain Java Swing. |
+| **Sudoku Solver** — starter | [Sudoku-Starter.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/Sudoku-Starter.zip) | [Open sandbox](https://play.juicemind.com/sandbox/vSgWw9FlTLBlX72G5hOc) | A constraint-solver skeleton. The puzzle loads from `boards/board1.txt` and every unsolved square draws the digits still possible for it. `isSolved()` and `onePass()` are marked *complete this*. Uses ACM. |
+| **Pacman** — starter | [Pacman-Starter.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/Pacman-Starter.zip) | [Open sandbox](https://play.juicemind.com/sandbox/gq14MS1Az0r5i7Wny5zx) | The maze, the dots and Pac-Man himself all draw correctly, but he can't move yet. `nextImage()`, `move()` and the turning logic are marked `TO DO`. No ghosts. Uses ACM. |
+| **Pacman** — finished | [Pacman-Finished.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/Pacman-Finished.zip) | [Open sandbox](https://play.juicemind.com/sandbox/vA4TbpjcnLjI9mD6Bo80) | The full game: click to start, arrow keys to steer, four ghosts (two wander, two hunt you), power pellets that turn them blue, and a dot counter. Uses ACM. |
+| **War** | [War.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/War.zip) | [Open sandbox](https://play.juicemind.com/sandbox/tO9XTp9F4Ysz63jnPQeu) | The card game. Press **Flip Card** to play a round; a tie starts a war with three face-down cards each. Real card artwork, a shuffled `Deck`, and separate `Pile` and `Player` classes. Plain Java Swing. |
 
 > **Note on the "Try it live" links:** these open a JuiceMind sandbox that **anyone can edit.**
 > **Do not make changes!** To get your own editable copy, follow the upload steps above.
@@ -79,7 +83,9 @@ time can't recreate folders, and the project won't find its artwork.
 **JuiceMind currently runs Java 17.** The ACM library is built on the old Applet API, which
 was removed in Java 24 — so if JuiceMind upgrades that far in the future, ACM-based projects
 will need replacing. Java-only projects are unaffected. You can check the version yourself
-with `java -version` in the sandbox's **Shell** tool.
+with `java -version` in the sandbox's **Shell** tool. Pacman also uses `java.applet.AudioClip`
+for its sound effects, so it prints four deprecation warnings when it compiles — those are
+normal and the game runs fine.
 
 ---
 
