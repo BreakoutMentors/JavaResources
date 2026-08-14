@@ -1,7 +1,7 @@
 # Java Exercises
 
-Short practice problems — no images, no level files, nothing to download. Every exercise is a
-single `Main.java` you paste straight into a fresh JuiceMind sandbox.
+Short practice problems — nothing to download, no files to upload. Every exercise is a single
+`Main.java` you paste straight into a fresh JuiceMind sandbox.
 
 For the bigger graphical projects (Snake, Pacman, Tower Defense, and friends), see the
 [main README](README.md) instead.
@@ -757,13 +757,213 @@ class Square extends Rectangle {
 
 ### Graphics Objects
 
-The starting point for the Space Invaders project, and a tour of how a game draws
-itself: an abstract `ScreenObject`, with `Oval` and `Image` both extending it, and a
-`Main` that runs a 40-frames-per-second game loop.
+The starting point for the Space Invaders project, and a tour of how a game draws itself: an abstract `ScreenObject`, with `Oval` and `Image` both extending it, and a `Main` that runs a 40-frames-per-second game loop. The spaceship sprite is embedded in the file as Base64 text, so this pastes like everything else.
 
-This is the one exception to the copy-and-paste rule — it needs its spaceship sprite,
-so download **[GraphicsObjects.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/GraphicsObjects.zip)**
-and upload it with the zip steps in the [main README](README.md#how-to-use-a-project).
+```java
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+class Main extends Canvas {
+
+    private ArrayList<ScreenObject> objects;
+    private Image player; 
+
+    public Main() {
+
+      //create game
+      objects = new ArrayList<ScreenObject>();
+      Oval o = new Oval(180, 100);
+      objects.add(o);
+      Image i = new Image(300, 0);
+      objects.add(i);
+      player = i;
+
+      addMouseListener(new MouseListener(){
+                    public void mouseClicked(MouseEvent e){
+                        System.out.println("CLICKED: " + e.getX() + ", " + e.getY());
+                    }
+                    public void mouseEntered(MouseEvent arg0) {}
+                    public void mouseExited(MouseEvent arg0) {}
+                    public void mousePressed(MouseEvent arg0) {}
+                    public void mouseReleased(MouseEvent arg0) {}
+        });
+
+      addKeyListener(new KeyListener(){
+                    public void keyPressed(KeyEvent e){
+                        System.out.println("PRESSED: " + e.getKeyCode());
+                    }
+                    public void keyReleased(KeyEvent e){}
+                    public void keyTyped(KeyEvent e){}
+        });
+
+    addMouseMotionListener(new MouseMotionListener(){
+                    public void mouseMoved(MouseEvent e){
+                        System.out.println("MOVED: " + e.getX() + ", " + e.getY());
+                    }
+                    public void mouseDragged(MouseEvent e){}
+      });
+    
+    }
+
+    public static void main(String[] args) {
+        JFrame f = new JFrame("Graphics");
+        Main c = new Main();
+        c.setSize(400, 400);
+        f.add(c);
+        f.pack();
+        f.setVisible(true);
+
+        c.gameLoop();
+    }
+
+    private void gameLoop(){
+      //play game
+      while(true){
+
+        //move everything
+        for(int i=0; i<objects.size(); i++){
+          objects.get(i).move();
+        }
+
+        //decide any collisions
+
+        //see if player hits any ovals
+        for(int i=0; i<objects.size(); i++){
+          ScreenObject obj = objects.get(i);
+          if(obj instanceof Oval){
+            boolean overlap = obj.getRectangle().intersects(player.getRectangle());
+            if(overlap) System.out.println("HIT");
+          }
+        }
+
+        repaint();
+
+        try {
+          //pause for 25 millisecs, can adjust if needed
+          Thread.sleep(25);
+        } catch(InterruptedException e) {
+          //empty
+        }
+      }
+    }
+
+    public void paint(Graphics g) {
+
+        //paint every object
+        for(int i=0; i<objects.size(); i++){
+          objects.get(i).paint(g);
+        }
+        
+    }
+}
+
+abstract class ScreenObject {
+
+    abstract Rectangle getRectangle();
+    abstract void move();
+    abstract void paint(Graphics g);
+    
+}
+
+class Oval extends ScreenObject {
+
+    private double x, y;
+
+    public Oval(double x, double y){
+      this.x = x;
+      this.y = y;
+    }
+
+    public void move(){
+      this.x += 1;
+    }
+
+    public Rectangle getRectangle(){
+      //the oval is always 30x40
+      return new Rectangle((int) x, (int) y, 30, 40);
+    }
+
+    public void paint(Graphics g) {
+      //always 30x40 and green
+      g.setColor(Color.GREEN);
+      g.fillOval((int) x, (int) y, 30, 40);
+    }
+}
+
+class Image extends ScreenObject {
+
+    //The spaceship picture lives right here as text, so this whole exercise stays a single
+    //copy and paste. Base64 is just a way of writing raw bytes using ordinary letters and
+    //digits - decodeSprite() turns it back into a real PNG.
+    private static final String SPACESHIP_PNG =
+        "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVohqZbd51HXnw5S2QyQljm3oTerEPh" +
+        "gUDmXjzDw8Ofn5+AgIBpaWlYWFg2NjYAAABQHBb2GnITAAAAEXRSTlP/////////////////////ACWtmWIA" +
+        "AAHUSURBVHja7dfbkoMgDAZgDB6QyIb3f9pNALdYUVEudjpTu1dAPn7AtVb5xkt9gQ8ASK4GgH6ccz/UALgF" +
+        "F/ccIOdwQXcmXAKSoAVYEM/XcAUgWsTHAAEnsJwA6DGA1lpsBWanmoAZnwKk0hJm1dNNgHJgXgGqBmihFUCc" +
+        "eQ8CEFtrALLh3hHASX0EUmt9AlJKBC5XfR+E6gQ8lOcSQIF8+gBwgvol4AoogFAfAKxdQgYAJOE+QHqToKOb" +
+        "gNYa8gRd190BQMuVJQAGOqgGQAcBXglCfQfVQBJiPQsQ6ysB0pAEWBOketBUBUg518tfuri8g2IEdRAAYoiU" +
+        "IE4PpQiqGIB3PYSIt4CcQZhemq8BDtBDnFH3OPNDdcZex63k5vcIBUAGBkGTs+GpbJ0sKzVfATFArM+AVdhF" +
+        "UKUdSPVeAP5qE8AnYXcQqnAEfar3QQgBdj3HQDy1NCoHgiB3A5wB6z2QZtkA751lYDtkC/wJx0Aa8ZpCBPv6" +
+        "J971l4Gs/w3YDyjtQd7Nj2f+0PGAwjFuus04DMN0MqBwI23qh3GYpsEcDrh6xTHjOA3TaJ6+5hk/TmMb4AUw" +
+        "z191jfHn81+/bPMuNALGtP5eaAWM/2/g+6vtE4BfNW7gFd6Et1wAAAAaYWxQaHic7cEBDQAAAMKg/qlvDwcU" +
+        "AAAA8G6BYfDiMayM3QAAAABJRU5ErkJggg==";
+
+    private double x, y;
+    private BufferedImage i;
+
+    //Use this one for the built-in spaceship
+    public Image(double x, double y){
+      this.x = x;
+      this.y = y;
+      this.i = decodeSprite();
+    }
+
+    private static BufferedImage decodeSprite(){
+      try{
+        byte[] bytes = Base64.getDecoder().decode(SPACESHIP_PNG);
+        return ImageIO.read(new ByteArrayInputStream(bytes));
+      } catch (IOException e){
+        System.err.println("Could not decode the built-in sprite: " + e.getMessage());
+        return null;
+      }
+    }
+
+    //Use this one once you upload your own picture into the sandbox
+    public Image(double x, double y, String filename){
+      this.x = x;
+      this.y = y;
+
+      try{
+        i = ImageIO.read(new File(filename));
+      } catch (IOException e){
+        System.err.println("Caught IOException: " +  e.getMessage());
+      }
+    }
+
+    public void move(){
+      this.y += 1;
+    }
+
+    public Rectangle getRectangle(){
+      //this image is always 64x64
+      return new Rectangle((int) x, (int) y, 64, 64);
+    }
+
+    public void paint(Graphics g) {
+
+      g.drawImage(i, (int) x, (int) y, null);
+
+    }
+}
+```
 
 ---
 
