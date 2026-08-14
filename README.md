@@ -40,9 +40,8 @@ file explorer, or use the **Auto-resize / Fixed size** toggle in the bottom-righ
 |---|---|---|---|
 | **Tower Defense** | [TowerDefense.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/TowerDefense.zip) | [Open sandbox](https://play.juicemind.com/sandbox/OQYed3EQ01DHKRXrBE3c) | Tile-based map loaded from a text file, animated enemy that walks the path, a tower that fires bullets. Uses the ACM graphics library. |
 
-> **Note on the "Try it live" links:** these open a JuiceMind sandbox and require you to be
-> signed in to JuiceMind. To get your own editable copy, follow the upload steps above —
-> JuiceMind sandboxes cannot be forked or remixed directly.
+> **Note on the "Try it live" links:** these open a JuiceMind sandbox that **anyone can edit.**
+> **Do not make changes!** To get your own editable copy, follow the upload steps above.
 
 ---
 
