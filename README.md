@@ -96,3 +96,8 @@ Java files go at the top level because JuiceMind compiles and runs from the proj
 Don't include Eclipse's `bin/`, `.classpath`, `.project`, `.settings`, or `.DS_Store` —
 they're just noise, and a stray duplicate `.java` under `bin/` will break the build with a
 `duplicate class` error.
+
+**If a demo sandbox gets edited.** The "Try it live" sandboxes are publicly editable, so
+anyone can change what the next visitor sees. If one gets scribbled on, create a fresh
+sandbox, upload that project's `.zip` again, and swap the link in the table above. The zips
+in this repo are the source of truth — the sandboxes are only previews of them.
