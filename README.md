@@ -2,6 +2,10 @@
 
 Ready-to-run Java projects for students, packaged for **JuiceMind's free browser IDE**.
 
+> **Just looking for short practice problems?** The single-file exercises — printing, loops,
+> recursion, data structures — live in **[EXERCISES.md](EXERCISES.md)**. Those are copy-and-paste,
+> no zip needed. Everything below is the bigger graphical projects.
+
 Nothing to install — no JDK, no Eclipse, no downloads beyond a single `.zip`. Works on
 Chromebooks, school laptops, and tablets. Each project is a complete, working starting
 point that students are meant to extend.
