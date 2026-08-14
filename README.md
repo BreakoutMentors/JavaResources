@@ -39,9 +39,9 @@ file explorer, or use the **Auto-resize / Fixed size** toggle in the bottom-righ
 | Project | Download | Try it live | What's in it |
 |---|---|---|---|
 | **Tower Defense** | [TowerDefense.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/TowerDefense.zip) | [Open sandbox](https://play.juicemind.com/sandbox/OQYed3EQ01DHKRXrBE3c) | Tile-based map loaded from a text file, animated enemy that walks the path, a tower that fires bullets. Uses the ACM graphics library. |
-| **Tic Tac Toe** | [TicTacToe.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/TicTacToe.zip) | — | Play X against a computer opponent that blocks you and takes a win when it sees one. Plain Java Swing — no extra library. |
-| **Space Invaders** — starter | [SpaceInvaders-Starter.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/SpaceInvaders-Starter.zip) | — | Your ship, one enemy, click to shoot. Deliberately unfinished: enemies fly off-screen, no rows, no enemy fire. Marked `IMPROVE THIS` in the code. Uses ACM. |
-| **Space Invaders** — finished | [SpaceInvaders-Finished.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/SpaceInvaders-Finished.zip) | — | The completed game: rows of bouncing enemies, a mothership, bunkers, enemy fire, multiple bullet types, and Game Over. Uses ACM. |
+| **Tic Tac Toe** | [TicTacToe.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/TicTacToe.zip) | [Open sandbox](https://play.juicemind.com/sandbox/x3atUToiPU0XMvJU8ppw) | Play X against a computer opponent that blocks you and takes a win when it sees one. Plain Java Swing — no extra library. |
+| **Space Invaders** — starter | [SpaceInvaders-Starter.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/SpaceInvaders-Starter.zip) | [Open sandbox](https://play.juicemind.com/sandbox/RCh6IeYAa8231sjDWhfX) | Your ship, one enemy, click to shoot. Deliberately unfinished: enemies fly off-screen, no rows, no enemy fire. Marked `IMPROVE THIS` in the code. Uses ACM. |
+| **Space Invaders** — finished | [SpaceInvaders-Finished.zip](https://github.com/BreakoutMentors/JavaResources/raw/main/SpaceInvaders-Finished.zip) | [Open sandbox](https://play.juicemind.com/sandbox/LMbmM1DIR3dKHNeMu1SK) | The completed game: rows of bouncing enemies, a mothership, bunkers, enemy fire, multiple bullet types, and Game Over. Uses ACM. |
 
 > **Note on the "Try it live" links:** these open a JuiceMind sandbox that **anyone can edit.**
 > **Do not make changes!** To get your own editable copy, follow the upload steps above.
