@@ -97,9 +97,9 @@ time can't recreate folders, and the project won't find its artwork.
 **JuiceMind currently runs Java 17.** The ACM library is built on the old Applet API, which
 was removed in Java 24 — so if JuiceMind upgrades that far in the future, ACM-based projects
 will need replacing. Java-only projects are unaffected. You can check the version yourself
-with `java -version` in the sandbox's **Shell** tool. Pacman also uses `java.applet.AudioClip`
-for its sound effects, so it prints four deprecation warnings when it compiles — those are
-normal and the game runs fine.
+with `java -version` in the sandbox's **Shell** tool. Pacman and Breakout also use
+`java.applet.AudioClip` for their sound effects, so they print deprecation warnings when they
+compile — those are normal and the games run fine.
 
 ---
 
